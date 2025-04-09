@@ -21,8 +21,8 @@ const Shop = () => {
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [selectedCondition, setSelectedCondition] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>("all"); // Changed from empty string to "all"
+  const [selectedCondition, setSelectedCondition] = useState<string>("all"); // Changed from empty string to "all"
   const [priceRange, setPriceRange] = useState([0, 200]);
   const [sortBy, setSortBy] = useState<string>('newest');
   
@@ -60,13 +60,13 @@ const Shop = () => {
       );
     }
     
-    // Apply category filter
-    if (selectedCategory) {
+    // Apply category filter - changed to check for "all" instead of empty string
+    if (selectedCategory !== "all") {
       results = results.filter(product => product.category === selectedCategory);
     }
     
-    // Apply condition filter
-    if (selectedCondition) {
+    // Apply condition filter - changed to check for "all" instead of empty string
+    if (selectedCondition !== "all") {
       results = results.filter(product => product.condition === selectedCondition);
     }
     
@@ -95,8 +95,8 @@ const Shop = () => {
   
   const resetFilters = () => {
     setSearchQuery('');
-    setSelectedCategory('');
-    setSelectedCondition('');
+    setSelectedCategory("all"); // Changed from empty string to "all"
+    setSelectedCondition("all"); // Changed from empty string to "all"
     setPriceRange([0, 200]);
     setSortBy('newest');
   };
@@ -169,7 +169,7 @@ const Shop = () => {
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem> {/* Changed from empty string to "all" */}
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>{category}</SelectItem>
                   ))}
@@ -186,7 +186,7 @@ const Shop = () => {
               >
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="" id="condition-all" />
+                    <RadioGroupItem value="all" id="condition-all" /> {/* Changed from empty string to "all" */}
                     <Label htmlFor="condition-all">All Conditions</Label>
                   </div>
                   <div className="flex items-center space-x-2">
