@@ -21,8 +21,8 @@ const Shop = () => {
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [selectedCondition, setSelectedCondition] = useState<string>('all');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [selectedCondition, setSelectedCondition] = useState<string>('');
   const [priceRange, setPriceRange] = useState([0, 200]);
   const [sortBy, setSortBy] = useState<string>('newest');
   
@@ -60,13 +60,13 @@ const Shop = () => {
       );
     }
     
-    // Apply category filter - changed to check for 'all' instead of empty string
-    if (selectedCategory && selectedCategory !== 'all') {
+    // Apply category filter
+    if (selectedCategory) {
       results = results.filter(product => product.category === selectedCategory);
     }
     
-    // Apply condition filter - changed to check for 'all' instead of empty string
-    if (selectedCondition && selectedCondition !== 'all') {
+    // Apply condition filter
+    if (selectedCondition) {
       results = results.filter(product => product.condition === selectedCondition);
     }
     
@@ -95,8 +95,8 @@ const Shop = () => {
   
   const resetFilters = () => {
     setSearchQuery('');
-    setSelectedCategory('all');
-    setSelectedCondition('all');
+    setSelectedCategory('');
+    setSelectedCondition('');
     setPriceRange([0, 200]);
     setSortBy('newest');
   };
@@ -158,7 +158,7 @@ const Shop = () => {
               </Button>
             </div>
             
-            {/* Categories Filter - Fixed empty string value */}
+            {/* Categories Filter */}
             <div className="mb-6">
               <h3 className="font-medium mb-3">Categories</h3>
               <Select 
@@ -169,7 +169,7 @@ const Shop = () => {
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="">All Categories</SelectItem>
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>{category}</SelectItem>
                   ))}
@@ -177,7 +177,7 @@ const Shop = () => {
               </Select>
             </div>
             
-            {/* Condition Filter - Fixed empty string value */}
+            {/* Condition Filter */}
             <div className="mb-6">
               <h3 className="font-medium mb-3">Condition</h3>
               <RadioGroup 
@@ -186,7 +186,7 @@ const Shop = () => {
               >
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="all" id="condition-all" />
+                    <RadioGroupItem value="" id="condition-all" />
                     <Label htmlFor="condition-all">All Conditions</Label>
                   </div>
                   <div className="flex items-center space-x-2">
