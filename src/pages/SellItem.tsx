@@ -8,9 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { createProduct } from "@/services/api";
 import { Category } from "@/types";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate } from "react-router-dom";
 
 const SellItem = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   
@@ -45,8 +47,8 @@ const SellItem = () => {
         description: "Your item is now available for sale.",
       });
       
-      // In a real app, we would redirect to the new product page
-      // or to a seller dashboard
+      // Redirect to the product page
+      navigate(`/product/${newProduct.id}`);
       
     } catch (error) {
       console.error("Failed to list item:", error);
