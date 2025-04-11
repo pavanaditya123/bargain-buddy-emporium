@@ -1,73 +1,48 @@
-# Welcome to your Lovable project
 
-## Project info
+# Thrift Store Application with MongoDB
 
-**URL**: https://lovable.dev/projects/4b43c765-d9e5-40e0-b180-820c9cb4e444
+This is a thrift store application that uses MongoDB as the backend database.
 
-## How can I edit this code?
+## Setup Instructions
 
-There are several ways of editing your application.
+### Prerequisites
+- Node.js and npm installed
+- MongoDB installed and running locally (or a MongoDB Atlas account)
 
-**Use Lovable**
+### Backend Setup
+1. Navigate to the server directory: `cd server`
+2. Install dependencies: `npm install`
+3. Create a `.env` file in the server directory with the following content:
+   ```
+   PORT=5000
+   MONGODB_URI=mongodb://localhost:27017/thrift-store
+   ```
+   (Adjust the MongoDB URI if you're using MongoDB Atlas or a different setup)
+4. Start the server: `npm run dev`
+5. The server will run on port 5000 and automatically seed the database with sample products if empty
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4b43c765-d9e5-40e0-b180-820c9cb4e444) and start prompting.
+### Frontend Setup
+1. From the root directory, install dependencies: `npm install`
+2. Start the frontend: `npm run dev`
+3. The frontend will run on port 8080 (or another port if 8080 is in use)
 
-Changes made via Lovable will be committed automatically to this repo.
+## Features
+- Browse thrift items
+- Filter by category, condition, and price range
+- Search functionality
+- Add items to cart
+- Sell items
+- View product details
 
-**Use your preferred IDE**
+## Technology Stack
+- Frontend: React, TypeScript, Tailwind CSS, shadcn/ui
+- Backend: Express.js, MongoDB
+- Additional libraries: React Router, Lucide Icons
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/4b43c765-d9e5-40e0-b180-820c9cb4e444) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## API Endpoints
+- `GET /api/products` - Get all products
+- `GET /api/products/:id` - Get product by ID
+- `GET /api/products/category/:category` - Get products by category
+- `GET /api/products/search?q=query` - Search products by name or description
+- `POST /api/products` - Create new product
+- `GET /api/categories` - Get all product categories
